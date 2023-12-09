@@ -13,7 +13,7 @@ today = datetime.datetime(2023,12,9)
 start =  today - datetime.timedelta(weeks=24)
 end = today
 
-#st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 yf.pdr_override()
 
@@ -53,7 +53,7 @@ def main():
             plt.legend()
             #plt.savefig(f"{code}_{code_name.values[0]}.jpg")
             st.pyplot(plt.show())
-
+            st.pyplot(plt.show())
 
     
     st.balloons()

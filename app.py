@@ -1,4 +1,4 @@
-!pip install yfinance
+#!pip install yfinance
 import time 
 import streamlit as st
 import yfinance as yf

@@ -8,8 +8,8 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-today = datetime.datetime(2023,12,1)
-#today = datetime.datetime.now()
+#today = datetime.datetime(2023,12,1)
+today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
 end = today
 

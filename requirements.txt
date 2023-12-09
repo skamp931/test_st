@@ -1,5 +1,5 @@
 yfinance>=0.2.2
 pandas-datareader>=0.10.0
 matplotlib>=3.8.0
-numpy>=10.0.0
+numpy>=0.0.0
 

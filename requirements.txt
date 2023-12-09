@@ -1,2 +1,2 @@
-yfinance==0.2.2
-pandas_datareader==2.19.0
+yfinance>=0.2.2
+pandas-datareader>=0.10.0

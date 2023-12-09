@@ -53,6 +53,9 @@ def main():
             plt.legend()
             #plt.savefig(f"{code}_{code_name.values[0]}.jpg")
             st.pyplot(plt.show())
+
+            plt.plot(df["SMA7"],label="SMA7")
+            plt.plot(df["Close"],label="Close")
             st.pyplot(plt.show())
 
     

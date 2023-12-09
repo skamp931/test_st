@@ -59,7 +59,7 @@ setup(
     platforms=['any'],
     keywords='pandas, yahoo finance, pandas datareader',
     packages=find_packages(exclude=['contrib', 'docs', 'tests', 'examples']),
-    install_requires=['yfinance==0.2.28'],
+    install_requires=['yfinance>=0.2.28'],
     # Note: Pandas.read_html() needs html5lib & beautifulsoup4
     entry_points={
         'console_scripts': [

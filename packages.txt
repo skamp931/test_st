@@ -1,2 +1,2 @@
-install yfinance
-install pandas_datareader
+yfinance
+pandas_datareader

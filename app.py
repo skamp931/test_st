@@ -13,7 +13,7 @@ today = datetime.datetime(2023,12,9)
 start =  today - datetime.timedelta(weeks=24)
 end = today
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 
 yf.pdr_override()
 

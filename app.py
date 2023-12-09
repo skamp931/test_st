@@ -1,5 +1,19 @@
 import time 
 import streamlit as st
+import yfinance as yf
+import pandas as pd
+from pandas_datareader import data as pdr
+import datetime
+import random
+import matplotlib.pyplot as plt
+import numpy as np
+
+today = datetime.datetime(2023,12,1)
+#today = datetime.datetime.now()
+start =  today - datetime.timedelta(weeks=24)
+end = today
+
+yf.pdr_override()
 
 def main():
     status_area = st.empty()
@@ -10,8 +24,8 @@ def main():
 
         time.sleep(1)
     
-    status_area.write("Done!")
-
+    status_area.write("Done!"+f"{end}")
+    
     st.balloons()
 
 if __name__ == "__main__":

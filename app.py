@@ -50,7 +50,7 @@ def main():
 
             plt.legend()
             #plt.savefig(f"{code}_{code_name.values[0]}.jpg")
-            plt.show()
+            status_area.write(plt.show())
 
 
     

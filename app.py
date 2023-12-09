@@ -4,7 +4,7 @@ import streamlit as st
 def main():
     status_area = st.empty()
 
-    count_down_sec = 7
+    count_down_sec = 3
     for i in range(count_down_sec):
         status_area.write(f"{count_down_sec -i}sec left")
 

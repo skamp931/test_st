@@ -8,7 +8,10 @@ import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-today = datetime.datetime(2023,12,9)
+t_delta = datetime.timedelta(hours=9)
+JST = datetime.timezone(t_delta, 'JST')
+
+today = datetime.datetime.now(JST)
 #today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
 end = today
@@ -19,15 +22,15 @@ yf.pdr_override()
 
 df_code = pd.read_csv("data_j.csv")
 code_list = []
-overwrite = st.empty()
 
 st.title("銘柄抽出ツール")
 st.text("以下の条件の銘柄を抽出する。番号とチャート図を表示する。最後にコード一覧を表示する。\n １．移動平均7日曲線が1割以上上昇傾向 \n ２．500円以下")
+st.write(today.date().strftime('%Y/%m/%d'))
 
 def main():
 
     if st.button("解析スタート") == True:
-        st.spinner("解析中.....")
+        overwrite = st.empty()
         
         for code in df_code["コード"]:
             with overwrite.container():
@@ -36,7 +39,6 @@ def main():
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 print(str(code)+".T:",code_name)
-                st.write(str(code)+".T:",code_name)
     
                 df = pdr.get_data_yahoo(str(code)+".T",start,end)
         
@@ -52,6 +54,8 @@ def main():
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
             
                         if df["Close"].tail(1)[0] < 500:
+                            st.write(str(code)+".T:",code_name)
+
                             plt.plot(df["SMA7"],label="SMA7")
                             plt.plot(df["SMA14"],label="SMA14")
                             plt.plot(df["SMA21"],label="SMA21")

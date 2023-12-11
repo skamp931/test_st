@@ -30,7 +30,6 @@ def main():
 
     if st.button("解析スタート") == True:
         st.spinner("解析中.....)
-                 
         for code in df_code["コード"]:
             with overWrite.container():
                 st.write("コード",code)

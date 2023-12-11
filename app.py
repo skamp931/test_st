@@ -30,7 +30,7 @@ def main():
         st.spinner("解析中.....")
         
         for code in df_code["コード"]:
-            with overWrite.container():
+            with overwrite.container():
                 st.write("コード",code)
             if (code > 100 and code < 10000):
                 #print(df_code.query('コード == @code')["銘柄名"])

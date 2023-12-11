@@ -23,7 +23,7 @@ code_list = []
 def main():
 
     for code in df_code["コード"]:
-        if (code > 9000 and code < 10000):
+        if (code > 100 and code < 10000):
             #print(df_code.query('コード == @code')["銘柄名"])
             code_name = df_code.query('コード == @code')["銘柄名"]
             print(str(code)+".T:",code_name)

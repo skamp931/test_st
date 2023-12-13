@@ -83,7 +83,7 @@ def main():
                             code_list_only.append(code)
                             dic_co[code]="株価："+df["Close"].tail(1)[0]+"円/"
 
-      st.write(code_list)
+        st.write(code_list)
 
         for cd in code_list_only:
             dic_co[cd] += "目標株価："+get_stock_price(cd)

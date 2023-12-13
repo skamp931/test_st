@@ -7,6 +7,15 @@ import datetime
 import random
 import matplotlib.pyplot as plt
 import numpy as np
+import requests
+from bs4 import BeautifulSoup
+
+def get_stock_price(stock_code):
+  url = "https://minkabu.jp/stock/" + stock_code
+  response = requests.get(url)
+  soup = BeautifulSoup(response.content, "html.parser")
+  price = soup.find("div", class_="md_target_box_price").text
+  return price
 
 t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
@@ -34,6 +43,7 @@ def main():
     if st.button("解析スタート") == True:
         overwrite = st.empty()
         overwrite_2 = st.empty()
+        overwrite_3 = st.empty()
         
         for code in df_code["コード"]:
             with overwrite.container():
@@ -72,8 +82,14 @@ def main():
                             code_list_only.append(code)
     
         st.write(code_list)
+        dic_co = {}
+        for cd in code_list_only:
+            dic_co[cd]=get_stock_price(cd)
         with overwrite_2.container():
             st.write(code_list_only)
+        with overwrite_3.container():
+            st.write(dic_co)
+            
 
 if __name__ == "__main__":
     main()

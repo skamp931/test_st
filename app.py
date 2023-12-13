@@ -10,7 +10,7 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
-def get_stock_price(stock_code):
+def get_stock_price(int(stock_code)):
   url = "https://minkabu.jp/stock/" + stock_code
   response = requests.get(url)
   soup = BeautifulSoup(response.content, "html.parser")

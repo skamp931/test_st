@@ -10,8 +10,8 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
-def get_stock_price(int(stock_code)):
-  url = "https://minkabu.jp/stock/" + stock_code
+def get_stock_price(stock_code):
+  url = "https://minkabu.jp/stock/" + str(stock_code)
   response = requests.get(url)
   soup = BeautifulSoup(response.content, "html.parser")
   price = soup.find("div", class_="md_target_box_price").text
@@ -48,7 +48,7 @@ def main():
         for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
-            if (code > 100 and code < 10000):
+            if (code > 100 and code < 2000):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 print(str(code)+".T:",code_name)

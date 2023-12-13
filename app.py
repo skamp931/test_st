@@ -32,6 +32,7 @@ yf.pdr_override()
 df_code = pd.read_csv("data_j.csv")
 code_list = []
 code_list_only = []
+dic_co = {}
 
 st.title("銘柄抽出ツール")
 st.text("以下の条件の銘柄を抽出する。番号とチャート図を表示する。最後にコード一覧を表示する。\n １．移動平均21日曲線が1割以上上昇傾向 \n ２．500円以下")
@@ -80,11 +81,11 @@ def main():
                             st.pyplot(plt.show())
                             code_list.append([str(code)+".T:",code_name])
                             code_list_only.append(code)
-    
+                            dic_co[code]="株価："+df["close"].tail(1)[0]+"円/"
         st.write(code_list)
-        dic_co = {}
+
         for cd in code_list_only:
-            dic_co[cd]=get_stock_price(cd)
+            dic_co[cd] += "目標株価："+get_stock_price(cd)
         with overwrite_2.container():
             st.write(code_list_only)
         with overwrite_3.container():

@@ -43,13 +43,13 @@ def main():
 
     if st.button("解析スタート") == True:
         overwrite = st.empty()
-        overwrite_2 = st.empty()
+        #overwrite_2 = st.empty()
         overwrite_3 = st.empty()
         
         for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
-            if (code > 100 and code < 2000):
+            if (code > 100 and code < 10000):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 print(str(code)+".T:",code_name)
@@ -87,8 +87,8 @@ def main():
 
         for cd in code_list_only:
             dic_co[cd] += "目標株価："+get_stock_price(cd)
-        with overwrite_2.container():
-            st.write(code_list_only)
+        #with overwrite_2.container():
+            #st.write(code_list_only)
         with overwrite_3.container():
             st.write(dic_co)
             

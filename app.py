@@ -81,7 +81,7 @@ def main():
                             st.pyplot(plt.show())
                             code_list.append([str(code)+".T:",code_name])
                             code_list_only.append(code)
-                            dic_co[code]="株価："+df["Close"].tail(1)[0]+"円/"
+                            dic_co[code]="株価："+str(df["Close"].tail(1)[0])+"円/"
 
         st.write(code_list)
 

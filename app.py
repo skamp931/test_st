@@ -25,7 +25,7 @@ today = datetime.datetime.now(JST)
 start =  today - datetime.timedelta(weeks=24)
 end = today
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 
 yf.pdr_override()
 

@@ -17,11 +17,11 @@ def get_stock_price(stock_code):
   price = soup.find("div", class_="md_target_box_price").text
   return price
 
-t_delta = datetime.timedelta(hours=9)
-JST = datetime.timezone(t_delta, 'JST')
+#t_delta = datetime.timedelta(hours=9)
+#JST = datetime.timezone(t_delta, 'JST')
 
-today = datetime.datetime.now(JST)
-#today = datetime.datetime.now()
+#today = datetime.datetime.now(JST)
+today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
 end = today
 print("QQQQQQ")

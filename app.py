@@ -24,7 +24,7 @@ today = datetime.datetime.now(JST)
 #today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
 end = today
-
+print("QQQQQQ")
 df = yf.download("8746.T",start,end)
 print(df)
 

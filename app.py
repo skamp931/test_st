@@ -57,6 +57,7 @@ def main():
                 #df = pdr.get_data_yahoo(str(code)+".T",start,end)
                 df = yf.download(str(code)+".T",start,end)
         
+                print(df)
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()

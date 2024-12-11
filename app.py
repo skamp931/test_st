@@ -26,7 +26,7 @@ start =  today - datetime.timedelta(weeks=24)
 start =  today - datetime.timedelta(weeks=7)
 end = today
 print("QQQQQQ")
-df = yf.download("8746.T",start,end)
+#df = yf.download("8746.T",start,end)
 df = yf.download("8746.T",datetime.datetime.now()-datetime.timedelta(weeks=24),datetime.datetime.now())
 print(df)
 

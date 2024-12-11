@@ -27,7 +27,7 @@ end = today
 
 #st.set_option('deprecation.showPyplotGlobalUse', False)
 
-yf.pdr_override()
+#yf.pdr_override()
 
 df_code = pd.read_csv("data_j.csv")
 code_list = []
@@ -54,7 +54,9 @@ def main():
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 print(str(code)+".T:",code_name)
     
-                df = pdr.get_data_yahoo(str(code)+".T",start,end)
+                #df = pdr.get_data_yahoo(str(code)+".T",start,end)
+                df = yf.download(str(code)+".T",start,end)
+        
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()

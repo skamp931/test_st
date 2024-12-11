@@ -53,6 +53,8 @@ def main():
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 print(str(code)+".T:",code_name)
+                print(atart)
+                print(end)
     
                 #df = pdr.get_data_yahoo(str(code)+".T",start,end)
                 df = yf.download(str(code)+".T",start,end)

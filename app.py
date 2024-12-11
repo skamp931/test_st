@@ -25,6 +25,9 @@ today = datetime.datetime.now(JST)
 start =  today - datetime.timedelta(weeks=24)
 end = today
 
+df = yf.download("8746.T",start,end)
+print(df)
+
 #st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #yf.pdr_override()

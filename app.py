@@ -52,11 +52,11 @@ def main():
             if (code > 100 and code < 10000):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
-                #print(str(code)+".T:",code_name)
+                print(str(code)+".T:",code_name)
     
                 #df = pdr.get_data_yahoo(str(code)+".T",start,end)
                 df = yf.download(str(code)+".T",start,end)
-        
+                print("testgae!")
                 print(df)
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()

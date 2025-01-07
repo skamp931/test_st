@@ -34,7 +34,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 yf.pdr_override()
 
-df_code = pd.read_csv("data_jj.csv")
+df_code = pd.read_csv("data_j.csv")
 code_list = []
 code_list_only = []
 dic_co = {}

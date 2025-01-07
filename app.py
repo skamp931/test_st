@@ -30,9 +30,9 @@ print("QQQQQQ")
 df = yf.download("8746.T",datetime.datetime.now()-datetime.timedelta(weeks=24),datetime.datetime.now())
 print(df)
 
-#st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
-#yf.pdr_override()
+yf.pdr_override()
 
 df_code = pd.read_csv("data_jj.csv")
 code_list = []

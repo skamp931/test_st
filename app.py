@@ -23,11 +23,10 @@ JST = datetime.timezone(t_delta, 'JST')
 today = datetime.datetime.now(JST)
 #today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
-start =  today - datetime.timedelta(weeks=7)
+#start =  today - datetime.timedelta(weeks=7)
 end = today
-print("QQQQQQ")
-#df = yf.download("8746.T",start,end)
-df = yf.download("8746.T",datetime.datetime.now()-datetime.timedelta(weeks=24),datetime.datetime.now())
+df = yf.download("8746.T",start,end)
+#df = yf.download("8746.T",datetime.datetime.now()-datetime.timedelta(weeks=24),datetime.datetime.now())
 print(df)
 
 #st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -61,10 +60,10 @@ def main():
                 print(start)
                 print(end)
     
-                #df = pdr.get_data_yahoo(str(code)+".T",start,end)
-                df = yf.download(str(code)+".T",start,end)
+                df = pdr.get_data_yahoo(str(code)+".T",start,end)
+                #df = yf.download(str(code)+".T",start,end)
                 print("testgae!")
-                print(df)
+                #print(df)
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()

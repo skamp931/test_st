@@ -51,7 +51,7 @@ def main():
             if (code > 100 and code < 10000):
                 print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
-                st.write(str(code)+".T:",code_name)
+                #st.write(str(code)+".T:",code_name)
                 #st.write(start)
                 #st.write(end)
     
@@ -70,12 +70,12 @@ def main():
                 #st.write(df)
                 if len(df["SMA21"].tail(21)) >= 21:
                     #st.write("SMA21_2120>>")
-                    st.write(df["SMA21"].tail(21))
+                    #st.write(df["SMA21"].tail(21))
                     #st.write("SMA21_210")
                     #st.write(df["SMA21"].tail(21)[20])
                     #st.write(df["SMA21"].tail(21)[0])
-                    st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
-                    if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.0:
+                    #st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
+                    if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 2.0:
                         st.write(df["Close"].tail(1))            
                         if df["Close"].tail(1)[0] < 100:
                             st.write(str(code)+".T:",code_name)

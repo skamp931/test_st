@@ -73,7 +73,10 @@ def main():
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
                 print(len(df["SMA21"].tail(21)))
                 if len(df["SMA21"].tail(21)) >= 21:
-                    print(">>>>>>>>>"+df["SMA21"].tail(21)[20]+"====="+df["SMA21"].tail(21)[0])
+                    print("SMA21_2120")
+                    print(df["SMA21"].tail(21)[20])
+                    print("SMA21_210")
+                    print(df["SMA21"].tail(21)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
                         print(df["Close"].tail(1)[0])            
                         if df["Close"].tail(1).values[0][0] < 1.1:

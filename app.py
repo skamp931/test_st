@@ -80,15 +80,26 @@ def main():
                         if df["Close"].tail(1)[0] < 1000:
                             st.write(str(code)+".T:",code_name)
 
-                            plt.plot(df["SMA7"],label="SMA7")
-                            plt.plot(df["SMA14"],label="SMA14")
-                            plt.plot(df["SMA21"],label="SMA21")
-                            plt.plot(df["Close"],label="Close")
-                            plt.plot(df["Close"][1:-1][sdiff_sign],"o")
-            
-                            plt.legend()
+#非推奨の記載のため書き換える。予備用に残す。
+#                            plt.plot(df["SMA7"],label="SMA7")
+#                            plt.plot(df["SMA14"],label="SMA14")
+#                            plt.plot(df["SMA21"],label="SMA21")
+#                            plt.plot(df["Close"],label="Close")
+#                            plt.plot(df["Close"][1:-1][sdiff_sign],"o")
+#                            plt.legend()
+#                            plt.savefig(f"{code}_{code_name.values[0]}.jpg")
+#                            st.pyplot(plt.show())
+                            fig, ax = plt.subplots()
+                            ax.plot(df.index, df["SMA7"], label="SMA7")
+                            ax.plot(df.index, df["SMA14"], label="SMA14")
+                            ax.plot(df.index, df["SMA21"], label="SMA21")
+                            ax.plot(df.index, df["Close"], label="Close")
+                            ax.scatter(df.index[1:-1][sdiff_sign], df["Close"][1:-1][sdiff_sign], label="Bullish Reversal")
+                            
+                            ax.legend()
                             plt.savefig(f"{code}_{code_name.values[0]}.jpg")
-                            st.pyplot(plt.show())
+                            st.pyplot(fig)
+                          
                             code_list.append([str(code)+".T:",code_name])
                             code_list_only.append(code)
                             dic_co[code]="株価："+str(df["Close"].tail(1)[0])+"円/"

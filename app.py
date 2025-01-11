@@ -67,6 +67,7 @@ def main():
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
                 print(len(df["SMA21"].tail(21)))
+                print(df)
                 if len(df["SMA21"].tail(21)) >= 21:
                     print("SMA21_2120>>")
                     print(df["SMA21"].tail)

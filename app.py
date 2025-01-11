@@ -76,7 +76,7 @@ def main():
                     #st.write(df["SMA21"].tail(21)[0])
                     #st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
-                        st.write(df["Close"].tail(1))            
+                        #st.write(df["Close"].tail(1))            
                         if df["Close"].tail(1)[0] < 100:
                             st.write(str(code)+".T:",code_name)
 
@@ -94,7 +94,7 @@ def main():
                             ax.plot(df.index, df["SMA14"], label="SMA14")
                             ax.plot(df.index, df["SMA21"], label="SMA21")
                             ax.plot(df.index, df["Close"], label="Close")
-                            ax.scatter(df.index[1:-1][sdiff_sign], df["Close"][1:-1][sdiff_sign], label="遷移点")
+                            ax.scatter(df.index[1:-1][sdiff_sign], df["Close"][1:-1][sdiff_sign], label="Tpoint")
                             
                             ax.legend(loc='upper right')
                             plt.savefig(f"{code}_{code_name.values[0]}.jpg")

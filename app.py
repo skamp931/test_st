@@ -25,7 +25,6 @@ today = datetime.datetime.now(JST)
 start =  today - datetime.timedelta(weeks=24)
 #start =  today - datetime.timedelta(weeks=7)
 end = today
-print(df)
 
 #st.set_option('deprecation.showPyplotGlobalUse', False)
 

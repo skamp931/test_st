@@ -51,14 +51,14 @@ def main():
             if (code > 100 and code < 10000):
                 print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
-                print(str(code)+".T:",code_name)
-                print(start)
-                print(end)
+                st.write(str(code)+".T:",code_name)
+                st.write(start)
+                st.write(end)
     
                 df = pdr.get_data_yahoo(str(code)+".T",start,end)
                 #df = yf.download(str(code)+".T",start,end)
-                print(">>>>>>>>")
-                print(df)
+                st.write(">>>>>>>>")
+                st.write(df)
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()
@@ -66,15 +66,15 @@ def main():
                 sdiff = np.diff(df["Close"])
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
-                print(len(df["SMA21"].tail(21)))
-                print(df)
+                st.write(len(df["SMA21"].tail(21)))
+                st.write(df)
                 if len(df["SMA21"].tail(21)) >= 21:
-                    print("SMA21_2120>>")
-                    print(df["SMA21"].tail)
-                    print("SMA21_210")
-                    print(df["SMA21"].tail(1)[0])
+                    st.write("SMA21_2120>>")
+                    st.write(df["SMA21"].tail)
+                    st.write("SMA21_210")
+                    st.write(df["SMA21"].tail(1)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
-                        print(df["Close"])            
+                        st.write(df["Close"])            
                         if df["Close"].tail(1)[0] < 1.1:
                             st.write(str(code)+".T:",code_name)
 

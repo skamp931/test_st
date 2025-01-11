@@ -70,7 +70,7 @@ def main():
                 st.write(df)
                 if len(df["SMA21"].tail(21)) >= 21:
                     st.write("SMA21_2120>>")
-                    st.write(df["SMA21"].tail())
+                    st.write(df["SMA21"].tail(21))
                     st.write("SMA21_210")
                     st.write(df["SMA21"].tail(21)[20])
                     st.write(df["SMA21"].tail(21)[0])

@@ -66,7 +66,7 @@ def main():
                 sdiff = np.diff(df["Close"])
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
-                st.write(len(df["SMA21"].tail(21)))
+                #st.write(len(df["SMA21"].tail(21)))
                 #st.write(df)
                 if len(df["SMA21"].tail(21)) >= 21:
                     #st.write("SMA21_2120>>")

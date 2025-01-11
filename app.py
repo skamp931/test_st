@@ -74,7 +74,7 @@ def main():
 
                 if len(df["SMA21"].tail(21)) >= 21:
 
-                    if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 10.1:
+                    if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
             
                         if df["Close"].tail(1).values[0][0] < 1.1:
                             st.write(str(code)+".T:",code_name)

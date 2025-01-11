@@ -76,7 +76,7 @@ def main():
                     st.write(df["SMA21"].tail(21)[0])
                     st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 0.9:
-                        st.write(df["Close"])            
+                        st.write(df["Close"].tail(1))            
                         if df["Close"].tail(1)[0] < 1.1:
                             st.write(str(code)+".T:",code_name)
 

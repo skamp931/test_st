@@ -73,9 +73,9 @@ def main():
                     print("SMA21_2120")
                     #print(df["SMA21"].tail(21)[20])
                     print("SMA21_210")
-                    #print(df["SMA21"].tail(21)[0])
+                    print(df["SMA21"])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
-                        print(df["Close"].tail(1)[0])            
+                        print(df["Close"])            
                         if df["Close"].tail(1)[0] < 1.1:
                             st.write(str(code)+".T:",code_name)
 

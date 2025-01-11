@@ -76,8 +76,7 @@ def main():
                     #st.write(df["SMA21"].tail(21)[0])
                     #st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
-                        #st.write(df["Close"].tail(1))            
-                        if df["Close"].tail(1)[0] < 100:
+                        if df["Close"].tail(1)[0] < 500:
                             st.write(str(code)+".T:",code_name)
 
 #非推奨の記載のため書き換える。予備用に残す。

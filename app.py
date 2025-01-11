@@ -25,8 +25,6 @@ today = datetime.datetime.now(JST)
 start =  today - datetime.timedelta(weeks=24)
 #start =  today - datetime.timedelta(weeks=7)
 end = today
-df = yf.download("8746.T",start,end)
-#df = yf.download("8746.T",datetime.datetime.now()-datetime.timedelta(weeks=24),datetime.datetime.now())
 print(df)
 
 #st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -74,9 +72,9 @@ def main():
                 print(len(df["SMA21"].tail(21)))
                 if len(df["SMA21"].tail(21)) >= 21:
                     print("SMA21_2120")
-                    print(df["SMA21"].tail(21)[20])
+                    #print(df["SMA21"].tail(21)[20])
                     print("SMA21_210")
-                    print(df["SMA21"].tail(21)[0])
+                    #print(df["SMA21"].tail(21)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
                         print(df["Close"].tail(1)[0])            
                         if df["Close"].tail(1).values[0][0] < 1.1:

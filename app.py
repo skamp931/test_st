@@ -28,7 +28,7 @@ end = today
 
 yf.pdr_override()
 
-df_code = pd.read_csv("data_jj.csv")
+df_code = pd.read_csv("data_j.csv")
 code_list = []
 code_list_only = []
 dic_co = {}
@@ -52,13 +52,13 @@ def main():
                 print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 st.write(str(code)+".T:",code_name)
-                st.write(start)
-                st.write(end)
+                #st.write(start)
+                #st.write(end)
     
                 df = pdr.get_data_yahoo(str(code)+".T",start,end)
                 #df = yf.download(str(code)+".T",start,end)
-                st.write(">>>>>>>>")
-                st.write(df)
+                #st.write(">>>>>>>>")
+                #st.write(df)
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()
@@ -67,17 +67,17 @@ def main():
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
                 st.write(len(df["SMA21"].tail(21)))
-                st.write(df)
+                #st.write(df)
                 if len(df["SMA21"].tail(21)) >= 21:
-                    st.write("SMA21_2120>>")
+                    #st.write("SMA21_2120>>")
                     st.write(df["SMA21"].tail(21))
-                    st.write("SMA21_210")
-                    st.write(df["SMA21"].tail(21)[20])
-                    st.write(df["SMA21"].tail(21)[0])
+                    #st.write("SMA21_210")
+                    #st.write(df["SMA21"].tail(21)[20])
+                    #st.write(df["SMA21"].tail(21)[0])
                     st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
-                    if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 0.9:
+                    if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.0:
                         st.write(df["Close"].tail(1))            
-                        if df["Close"].tail(1)[0] < 1000:
+                        if df["Close"].tail(1)[0] < 100:
                             st.write(str(code)+".T:",code_name)
 
 #非推奨の記載のため書き換える。予備用に残す。
@@ -94,9 +94,9 @@ def main():
                             ax.plot(df.index, df["SMA14"], label="SMA14")
                             ax.plot(df.index, df["SMA21"], label="SMA21")
                             ax.plot(df.index, df["Close"], label="Close")
-                            ax.scatter(df.index[1:-1][sdiff_sign], df["Close"][1:-1][sdiff_sign], label="Bullish Reversal")
+                            ax.scatter(df.index[1:-1][sdiff_sign], df["Close"][1:-1][sdiff_sign], label="遷移点")
                             
-                            ax.legend()
+                            ax.legend(loc='upper right')
                             plt.savefig(f"{code}_{code_name.values[0]}.jpg")
                             st.pyplot(fig)
                           

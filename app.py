@@ -33,7 +33,7 @@ print(df)
 
 yf.pdr_override()
 
-df_code = pd.read_csv("data_j.csv")
+df_code = pd.read_csv("data_jj.csv")
 code_list = []
 code_list_only = []
 dic_co = {}
@@ -76,7 +76,7 @@ def main():
 
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 10.1:
             
-                        if df["Close"].tail(1).values[0][0] < 500:
+                        if df["Close"].tail(1).values[0][0] < 1.1:
                             st.write(str(code)+".T:",code_name)
 
                             plt.plot(df["SMA7"],label="SMA7")

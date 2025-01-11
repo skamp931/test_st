@@ -70,10 +70,11 @@ def main():
                 st.write(df)
                 if len(df["SMA21"].tail(21)) >= 21:
                     st.write("SMA21_2120>>")
-                    st.write(df["SMA21"].tail)
+                    st.write(df["SMA21"].tail())
                     st.write("SMA21_210")
                     st.write(df["SMA21"].tail(21)[20])
                     st.write(df["SMA21"].tail(21)[0])
+                    st.write(df["SMA21"].tail(21)[20]/df["SMA21"].tail(21)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
                         st.write(df["Close"])            
                         if df["Close"].tail(1)[0] < 1.1:

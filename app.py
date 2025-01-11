@@ -21,16 +21,14 @@ t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
 
 today = datetime.datetime.now(JST)
-#today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
-#start =  today - datetime.timedelta(weeks=7)
 end = today
 
 #st.set_option('deprecation.showPyplotGlobalUse', False)
 
 yf.pdr_override()
 
-df_code = pd.read_csv("data_j.csv")
+df_code = pd.read_csv("data_jj.csv")
 code_list = []
 code_list_only = []
 dic_co = {}
@@ -44,14 +42,14 @@ def main():
 
     if st.button("解析スタート") == True:
         overwrite = st.empty()
-        #overwrite_2 = st.empty()
+        overwrite_2 = st.empty()
         overwrite_3 = st.empty()
         
         for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
             if (code > 100 and code < 10000):
-                #print(df_code.query('コード == @code')["銘柄名"])
+                print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 print(str(code)+".T:",code_name)
                 print(start)
@@ -59,8 +57,8 @@ def main():
     
                 df = pdr.get_data_yahoo(str(code)+".T",start,end)
                 #df = yf.download(str(code)+".T",start,end)
-                print("testgae!")
-                #print(df)
+                print(">>>>>>>>")
+                print(df)
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()
@@ -70,8 +68,8 @@ def main():
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
                 print(len(df["SMA21"].tail(21)))
                 if len(df["SMA21"].tail(21)) >= 21:
-                    print("SMA21_2120")
-                    #print(df["SMA21"].tail(21)[20])
+                    print("SMA21_2120>>")
+                    print(df["SMA21"].tail)
                     print("SMA21_210")
                     print(df["SMA21"].tail(1)[0])
                     if df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > 1.1:
@@ -96,8 +94,8 @@ def main():
 
         for cd in code_list_only:
             dic_co[cd] += "目標株価："+get_stock_price(cd)
-        #with overwrite_2.container():
-            #st.write(code_list_only)
+        with overwrite_2.container():
+            st.write(code_list_only)
         with overwrite_3.container():
             st.write(dic_co)
             

@@ -105,8 +105,9 @@ def main():
                             dic_co[code]="株価："+str(df["Close"].tail(1)[0])+"円/"
 
         st.write(code_list)
-
+        st.write(code_list_only)
         for cd in code_list_only:
+            st.write("みんかぶ取得開始")
             dic_co[cd] += "目標株価："+get_stock_price(cd)
         with overwrite_2.container():
             st.write(code_list_only)

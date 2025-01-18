@@ -13,8 +13,8 @@ from bs4 import BeautifulSoup
 st.sidebar.header('パラメータ設定')
 
 # 銘柄番号の範囲設定
-start_code = st.sidebar.number_input('開始銘柄番号', min_value=1000, max_value=9999, value=1300)
-end_code = st.sidebar.number_input('終了銘柄番号', min_value=1000, max_value=9999, value=1400)
+start_code = st.sidebar.number_input('開始銘柄番号', min_value=1000, max_value=9999, value=1000)
+end_code = st.sidebar.number_input('終了銘柄番号', min_value=1000, max_value=9999, value=9999)
 
 # 移動平均線の期間設定
 ma_periods = st.sidebar.slider(
@@ -62,7 +62,7 @@ def main():
         for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
-            if (start_code > 100 and end_code < 10000):
+            if (code > start_code and code < end_code):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 #st.write(str(code)+".T:",code_name)
@@ -120,7 +120,6 @@ def main():
         st.write(code_list)
         st.write(code_list_only)
         for cd in code_list_only:
-            st.write("みんかぶ取得開始")
             dic_co[cd] += "目標株価："+get_stock_price(cd)
         with overwrite_2.container():
             st.write(code_list_only)

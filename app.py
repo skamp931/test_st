@@ -10,6 +10,20 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
+st.sidebar.header('パラメータ設定')
+
+# 銘柄番号の範囲設定
+start_code = st.sidebar.number_input('開始銘柄番号', min_value=1000, max_value=9999, value=1300)
+end_code = st.sidebar.number_input('終了銘柄番号', min_value=1000, max_value=9999, value=1400)
+
+# 移動平均線の期間設定
+ma_periods = st.sidebar.slider(
+    '移動平均線の期間（週）',
+    min_value=7,
+    max_value=56,
+    value=21
+)
+
 def get_stock_price(stock_code):
   url = "https://minkabu.jp/stock/" + str(stock_code)
   response = requests.get(url)
@@ -48,7 +62,7 @@ def main():
         for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
-            if (code > 100 and code < 10000):
+            if (start_code > 100 and end_code < 10000):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 #st.write(str(code)+".T:",code_name)
@@ -62,7 +76,7 @@ def main():
         
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()
-                df["SMA21"] = df["Close"].rolling(window=21).mean()
+                df["SMA21"] = df["Close"].rolling(window=ma_periods).mean()
                 sdiff = np.diff(df["Close"])
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 #print(round(df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0],3),"\n")
@@ -91,7 +105,7 @@ def main():
                             fig, ax = plt.subplots()
                             ax.plot(df.index, df["SMA7"], label="SMA7")
                             ax.plot(df.index, df["SMA14"], label="SMA14")
-                            ax.plot(df.index, df["SMA21"], label="SMA21")
+                            ax.plot(df.index, df["SMA21"], label=f"SMA{ma_periods}")
                             ax.plot(df.index, df["Close"], label="Close")
                             ax.scatter(df.index[1:-1][sdiff_sign], df["Close"][1:-1][sdiff_sign], label="Tpoint")
                             

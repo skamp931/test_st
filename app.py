@@ -24,8 +24,8 @@ ma_periods = st.sidebar.slider(
     value=21
 )
 
-max_perV = st.sidebar.number_input('割合上限', min_value=0.5, max_value=100, value=100.0)
-min_perV = st.sidebar.number_input('割合下限', min_value=0.5, max_value=100, value=1.1)
+max_perV = st.sidebar.number_input('割合上限', min_value=0.5, max_value=100.0, value=100.0)
+min_perV = st.sidebar.number_input('割合下限', min_value=0.5, max_value=100.0, value=1.1)
 
 v_price = st.sidebar.number_input('購入単元株価上限', min_value=1, max_value=1000000, value=500)
 

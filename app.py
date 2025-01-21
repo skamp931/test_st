@@ -29,6 +29,12 @@ min_perV = st.sidebar.number_input('割合下限', min_value=0.5, max_value=100.
 
 v_price = st.sidebar.number_input('購入単元株価上限', min_value=1, max_value=1000000, value=500)
 
+# 文字列をアルファベットを0に置き換える関数
+def replace_alphabets_with_zero(input_string):
+    # リスト内包表記で文字ごとにチェックし、条件に応じて置き換え
+    result = ''.join(['0' if char.isalpha() else char for char in input_string])
+    return result
+
 def get_stock_price(stock_code):
   url = "https://minkabu.jp/stock/" + str(stock_code)
   response = requests.get(url)
@@ -67,7 +73,9 @@ def main():
         for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
-            if (int(code) > start_code and int(code)< end_code):
+            
+            if (int(replace_alphabets_with_zero(code)) > start_code and 
+                int(replace_alphabets_with_zero(code)) < end_code):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 #st.write(str(code)+".T:",code_name)

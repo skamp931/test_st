@@ -47,7 +47,7 @@ end = today
 
 yf.pdr_override()
 
-df_code = pd.read_csv("data_j.csv")
+df_code = pd.read_csv("meigara/data_j_20250120.csv")
 code_list = []
 code_list_only = []
 dic_co = {}

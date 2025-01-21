@@ -73,8 +73,12 @@ def main():
                 #st.write(str(code)+".T:",code_name)
                 #st.write(start)
                 #st.write(end)
-    
-                df = pdr.get_data_yahoo(str(code)+".T",start,end)
+                try:
+                    df = pdr.get_data_yahoo(str(code)+".T",start,end)
+                except KeyError:
+                    st.write(f"Ticker {ticker} not found in the data.")
+                except Exception as e:
+                    print(f"An error occurred: {e}")
                 #df = yf.download(str(code)+".T",start,end)
                 #st.write(">>>>>>>>")
                 #st.write(df)

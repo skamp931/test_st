@@ -64,7 +64,7 @@ def main():
         overwrite_2 = st.empty()
         overwrite_3 = st.empty()
         
-        for code in df_code["コード"]:
+        for int(code) in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
             if (code > start_code and code < end_code):

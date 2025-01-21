@@ -64,10 +64,10 @@ def main():
         overwrite_2 = st.empty()
         overwrite_3 = st.empty()
         
-        for int(code) in df_code["コード"]:
+        for code in df_code["コード"]:
             with overwrite.container():
                 st.write("code",code)
-            if (code > start_code and code < end_code):
+            if (int(code) > start_code and int(code)< end_code):
                 #print(df_code.query('コード == @code')["銘柄名"])
                 code_name = df_code.query('コード == @code')["銘柄名"]
                 #st.write(str(code)+".T:",code_name)

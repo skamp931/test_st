@@ -173,7 +173,7 @@ def main():
         with overwrite_3.container():
             st.write(dic_co)
         
-        st.session_state.data = dic_co
+        st.session_state.data = dic_co.items
 
 
 if __name__ == "__main__":

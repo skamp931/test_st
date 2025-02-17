@@ -35,7 +35,7 @@ def save_to_google_sheet(data):
     st.write("スプレッドシートを開きました。")
     
     # 今日の日付と時分秒を含むシートを追加
-    sheet_name = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    sheet_name = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
     worksheet = spreadsheet.add_worksheet(title=sheet_name, rows="100", cols="20")
     st.write(f"新しいシート '{sheet_name}' を追加しました。")
     
@@ -75,7 +75,7 @@ v_price = st.sidebar.number_input('購入単元株価上限', min_value=1, max_v
 t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
 
-today = datetime.datetime.now()
+today = datetime.datetime.now(JST)
 start =  today - datetime.timedelta(weeks=24)
 end = today
 

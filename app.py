@@ -40,7 +40,7 @@ def save_to_google_sheet(data):
     st.write(f"新しいシート '{sheet_name}' を追加しました。")
     
     # ヘッダー行を追加
-    header = ["銘柄コード", "株価", "目標株価（みんかぶ）"]
+    header = ["銘柄コード", "株価/目標株価（みんかぶ）"]
     worksheet.append_row(header)
     
     # データを文字列に変換し、数値データは整数に変換
@@ -164,8 +164,8 @@ def main():
                             code_list_only.append(code)
                             dic_co[code]="株価："+str(df["Close"].tail(1)[0])+"円/"
 
-        st.write(code_list)
-        st.write(code_list_only)
+#        st.write(code_list)
+#        st.write(code_list_only)
         for cd in code_list_only:
             dic_co[cd] += "目標株価："+get_stock_price(cd)
         with overwrite_2.container():
@@ -174,7 +174,6 @@ def main():
             st.write(dic_co)
         
         st.session_state.data = dic_co.items()
-        st.write(st.session_state.data)
 
 
 if __name__ == "__main__":

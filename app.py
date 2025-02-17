@@ -9,6 +9,50 @@ import matplotlib.pyplot as plt
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+# 文字列をアルファベットを0に置き換える関数
+def replace_alphabets_with_zero(input_string):
+    # リスト内包表記で文字ごとにチェックし、条件に応じて置き換え
+    result = ''.join(['0' if char.isalpha() else char for char in input_string])
+    return result
+
+def get_stock_price(stock_code):
+  url = "https://minkabu.jp/stock/" + str(stock_code)
+  response = requests.get(url)
+  soup = BeautifulSoup(response.content, "html.parser")
+  price = soup.find("div", class_="md_target_box_price").text
+  return price
+
+def save_to_google_sheet(data):
+    # Google APIの認証情報を設定
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gcp_service_account"], scope)
+    client = gspread.authorize(creds)
+    st.write("Google API認証に成功しました。")
+    
+    # スプレッドシートを開く
+    spreadsheet = client.open_by_key("1ygFHusEfP5st8SzQVcfs_F4kO8xXupiSh6oVYdX-JWk")
+    st.write("スプレッドシートを開きました。")
+    
+    # 今日の日付と時分秒を含むシートを追加
+    sheet_name = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    worksheet = spreadsheet.add_worksheet(title=sheet_name, rows="100", cols="20")
+    st.write(f"新しいシート '{sheet_name}' を追加しました。")
+    
+    # ヘッダー行を追加
+    header = ["銘柄コード", "株価", "目標株価（みんかぶ）"]
+    worksheet.append_row(header)
+    
+    # データを文字列に変換し、数値データは整数に変換
+    data_as_strings = [
+        [str(item) if isinstance(item, str) else str(int(float(item))) for item in row]
+        for row in data
+    ]
+    # データを保存
+    worksheet.append_rows(data_as_strings)
+    st.write("データを保存しました。")
 
 st.sidebar.header('パラメータ設定')
 
@@ -29,18 +73,6 @@ min_perV = st.sidebar.number_input('割合下限', min_value=0.5, max_value=100.
 
 v_price = st.sidebar.number_input('購入単元株価上限', min_value=1, max_value=1000000, value=500)
 
-# 文字列をアルファベットを0に置き換える関数
-def replace_alphabets_with_zero(input_string):
-    # リスト内包表記で文字ごとにチェックし、条件に応じて置き換え
-    result = ''.join(['0' if char.isalpha() else char for char in input_string])
-    return result
-
-def get_stock_price(stock_code):
-  url = "https://minkabu.jp/stock/" + str(stock_code)
-  response = requests.get(url)
-  soup = BeautifulSoup(response.content, "html.parser")
-  price = soup.find("div", class_="md_target_box_price").text
-  return price
 
 t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
@@ -142,7 +174,20 @@ def main():
             st.write(code_list_only)
         with overwrite_3.container():
             st.write(dic_co)
-            
+        
+        st.session_state.data = dic_co
+
 
 if __name__ == "__main__":
     main()
+
+# 保存ボタン
+if st.button("結果を保存"):
+    if st.session_state.data:
+        for data in st.session_state.data:
+            st.write(data)
+        st.write("保存を開始します。")
+        save_to_google_sheet(st.session_state.data)
+        st.success("データがGoogleスプレッドシートに保存されました。")
+    else:
+        st.error("データがありません。最初にデータを取得してください。")

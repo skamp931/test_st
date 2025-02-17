@@ -1,17 +1,14 @@
-import time 
 import streamlit as st
 import yfinance as yf
 import pandas as pd
 from pandas_datareader import data as pdr
 import datetime
-import random
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from datetime import datetime
 
 # 文字列をアルファベットを0に置き換える関数
 def replace_alphabets_with_zero(input_string):
@@ -78,7 +75,7 @@ v_price = st.sidebar.number_input('購入単元株価上限', min_value=1, max_v
 t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
 
-today = datetime.datetime.now(JST)
+today = datetime.datetime.now()
 start =  today - datetime.timedelta(weeks=24)
 end = today
 

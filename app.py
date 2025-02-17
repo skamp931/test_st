@@ -11,6 +11,7 @@ import requests
 from bs4 import BeautifulSoup
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 
 # 文字列をアルファベットを0に置き換える関数
 def replace_alphabets_with_zero(input_string):

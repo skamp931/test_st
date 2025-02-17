@@ -173,11 +173,12 @@ def main():
         with overwrite_3.container():
             st.write("かきます")
             st.write(dic_co)
-            st.write(dic_co.items)
-            st.write(dic_co.keys)
-            st.write(dic_co.values)
+            st.write(dic_co.items())
+            st.write(dic_co.keys())
+            st.write(dic_co.values())
         
-        st.session_state.data = dic_co.items
+        st.session_state.data = dic_co
+        st.write(st.session_state.data)
 
 
 if __name__ == "__main__":

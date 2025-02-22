@@ -87,7 +87,7 @@ def main():
         
         for code in df_code["コード"]:
             with overwrite.container():
-                st.write("code",code)
+                st.write("code", code)
             
             if (int(replace_alphabets_with_zero(code)) > start_code and 
                 int(replace_alphabets_with_zero(code)) < end_code):
@@ -97,6 +97,7 @@ def main():
                     df = yf.download(str(code)+".T", start=start, end=end)
                 except Exception as e:
                     st.write(f"An error occurred: {e}")
+                    continue
                 
                 df["SMA7"] = df["Close"].rolling(window=7).mean()
                 df["SMA14"] = df["Close"].rolling(window=14).mean()
@@ -105,9 +106,9 @@ def main():
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 
                 if len(df["SMA21"].tail(21)) >= 21:
-                    if (df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] > min_perV and df["SMA21"].tail(21)[20] / df["SMA21"].tail(21)[0] < max_perV):
-                        if df["Close"].tail(1)[0] < v_price:
-                            st.write(str(code)+".T:",code_name)
+                    if (df["SMA21"].tail(21)[-1] / df["SMA21"].tail(21)[0] > min_perV and df["SMA21"].tail(21)[-1] / df["SMA21"].tail(21)[0] < max_perV):
+                        if df["Close"].tail(1).values[0] < v_price:
+                            st.write(str(code)+".T:", code_name)
                             
                             fig, ax = plt.subplots()
                             ax.plot(df.index, df["SMA7"], label="SMA7")
@@ -120,12 +121,12 @@ def main():
                             plt.savefig(f"{code}_{code_name.values[0]}.jpg")
                             st.pyplot(fig)
                           
-                            code_list.append([str(code)+".T:",code_name])
+                            code_list.append([str(code)+".T:", code_name])
                             code_list_only.append(code)
-                            dic_co[code]="株価："+str(df["Close"].tail(1)[0])+"円/"
+                            dic_co[code] = "株価：" + str(df["Close"].tail(1).values[0]) + "円/"
         
         for cd in code_list_only:
-            dic_co[cd] += "目標株価："+get_stock_price(cd)
+            dic_co[cd] += "目標株価：" + get_stock_price(cd)
         with overwrite_2.container():
             st.write(code_list_only)
         with overwrite_3.container():

@@ -117,7 +117,7 @@ def main():
                             ax.plot(df.index, df["Close"], label="Close")
                             
                             # 修正: sdiff_signのインデックスを修正
-                            st.write(df.index)
+                            print(df.index,sdiff_sign)
 #                            st.write(df.index[1:][sdiff_sign])
 #                            st.write(df["Close"].iloc[1:][sdiff_sign])
 

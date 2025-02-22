@@ -115,7 +115,9 @@ def main():
                             ax.plot(df.index, df["SMA14"], label="SMA14")
                             ax.plot(df.index, df["SMA21"], label=f"SMA{ma_periods}")
                             ax.plot(df.index, df["Close"], label="Close")
-                            ax.scatter(df.index[1:][sdiff_sign], df["Close"][1:][sdiff_sign], label="Tpoint")
+                            
+                            # 修正: sdiff_signのインデックスを修正
+                            ax.scatter(df.index[1:][sdiff_sign], df["Close"].iloc[1:][sdiff_sign], label="Tpoint")
                             
                             ax.legend(loc='upper left')
                             plt.savefig(f"{code}_{code_name.values[0]}.jpg")

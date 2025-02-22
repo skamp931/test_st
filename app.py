@@ -106,7 +106,7 @@ def main():
                 sdiff_sign = ((sdiff[:-1] * sdiff[1:]) < 0) & (sdiff[:-1] > 0)
                 
                 if len(df["SMA21"].tail(21)) >= 21:
-                    if (df["SMA21"].tail(21)[-1] / df["SMA21"].tail(21)[0] > min_perV and df["SMA21"].tail(21)[-1] / df["SMA21"].tail(21)[0] < max_perV):
+                    if (df["SMA21"].tail(21).iloc[-1] / df["SMA21"].tail(21).iloc[0] > min_perV and df["SMA21"].tail(21).iloc[-1] / df["SMA21"].tail(21).iloc[0] < max_perV):
                         if df["Close"].tail(1).values[0] < v_price:
                             st.write(str(code)+".T:", code_name)
                             
